@@ -98,8 +98,4 @@ def make_merengue(huevos, azucar, batidora, bowl):
     if huevos == 4:
         if azucar == 170:
             if electrodomestico_funciona(batidora):
-                
-    
-    
-    
-    
+                etc...
