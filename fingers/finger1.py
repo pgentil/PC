@@ -2,10 +2,10 @@
 """
 Created on Mon Mar 14 14:59:19 2022
 
-@author: Pedro Gentil
+@author: Pedro
 """
 
-def partido_tenis(horas, minutos, segundos):
+def partido_tenis(horas: int, minutos: int, segundos: int) -> str:
     """Devuelve la cantidad de segundos de un partido de tenis
    
     Argumentos:
@@ -17,6 +17,6 @@ def partido_tenis(horas, minutos, segundos):
     segundos -- la cantidad de segundos transcurridos restando la cantidad de horas y minutos representados en numeros enteros
     
     """
-    minutos = minutos * 60
-    horas = horas * (60**2)
-    return horas + minutos + segundos
+    minutos *= 60
+    horas *= (60**2)
+    return f"{horas + minutos + segundos} segundos"
