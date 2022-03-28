@@ -61,3 +61,28 @@ print (id(s))
 s += " python"
 print (s)
 print (id(s))
+
+def sq_list(lista: list) -> list:
+    lista2 = lista
+    for i in range(len(lista2)):
+        lista2[i] = lista[i] ** 2
+    return lista2
+
+
+def generar_lista(n: int) -> list:
+    return list(range(n))
+
+def probar_desempaquetado():
+    meses = (("enero", 31), ("febrero", 28), ("diciembre", 31))
+    for mes, dias in meses:
+        print (mes, "tiene", dias, "dias.")
+        
+
+def probar_desempaquetado2():
+    db = (("Cuantos estudiantes hay en PC-IA?", (50, 100, 150, 200)),
+             ("Cuantos estudiantes hay en el aula", (15, 30, 45, 60)))
+    for pregunta, opciones in db:
+        print (pregunta)
+        for i, opcion in enumerate(opciones, 1):
+            print(f"{i}. {opcion}")
+        rta = input("> ")
