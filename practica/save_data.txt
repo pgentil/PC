@@ -1,4 +1,3 @@
 Pasto:verde
 Cielo:celeste
 Nube:blanca
-
