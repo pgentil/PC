@@ -1,124 +1,125 @@
-#%% Ej 1
-def less():
-    with open('texto.txt', 'r') as f:
-        for line in f:
-            print(line)
-    return None
+#%%Ej 1
+"El sort"
 
-#%% Ej 2
-
-def head(filename, N):
-    with open(filename, 'r') as f:
-        for lines in range(0, N):
-            print(f.readlines(), end= '')
-    return None
-
-#%% EJ 3
-
-def tails(filename, num_lines):
-    with open(filename, 'r') as f:
-        lines = f.readlines()
-        for line in lines[len(lines)- num_lines:]:
-            print(line, end="")
-    return None
-
-#%% EJ 4
-
-def touch(filename):
-    with open(filename, 'a'):
-        pass 
-    return None
-
-#%% EJ 5
-def cp(filename, newfilename):
-    with open(filename, 'r') as f, open(newfilename, 'w') as h:
-        for lines in f.readlines():
-            h.write(lines) 
-        pass
-    return None
+#%%Ej 2
+from tkinter import EXCEPTION
 
 
-#%% EJ 6
-def wc(filename):
-    palabras = 0
-    caracteres = 0
-    with open(filename, 'r') as f:
-        lineas = f.readlines()
-        n_lineas = len(lineas)
-        for line in lineas:
-            invalid = line.count(" ") + line.count("\n")
-            print (len(line))
-            o = line.split(" ")
-            palabras = palabras + len(o)
-            caracteres = caracteres + len(line) - invalid
-            print("o:", o)
-        return n_lineas, palabras, caracteres, filename
+def printkeys(dictionary: dict):
+    print (list(dictionary.keys()))
+
+#%%Ej 3
+def printvalues(dictionary:dict):
+    print (list(dictionary.values()))
 
 
-#%% Ej 7
-def grep(string: str, filename:str):
-    with open(filename, 'r') as f:
-        lines = f.readlines()
-        for line in lines:
-            if string in line:
-                print(line.strip("\n"))
-        return None
+#%%Ej 4
+def squared(number:int) -> dict:
+    dictionary = {}
+    if number == 0:
+        return dictionary
+    elif number < 0:
+        for i in range(-1, number - 1, -1):
+            dictionary[i] = i ** 2
+    else:
+        for j in range(1, number + 1):
+            dictionary[j] = j ** 2
+    return dictionary
 
-#%%Ej 8
-def cat(filename1:str, filename2:str, newfile: str = "newfile.txt"):
-    with open (filename1, 'r') as f, open (filename2, 'r') as g, open (newfile, 'w') as h:
-        h.write("First file\n")
-        for line in f.readlines():
-            h.write(line)
-        h.write("\nSecond file\n")
-        for line2 in g.readlines():
-            h.write(line2)
-        pass
-    return None
+#%%Ej5
+def dictcount(string:str) -> dict:
+    dictionary = {}
+    for i in string:
+        if i in dictionary.keys():
+            pass
+        elif i == " ":
+            pass
+        else:
+            dictionary[i.lower()] = string.count(i)
+    return dictionary
 
+#%%Ej 6
+
+def currency(inputuser:str, error_msg: str = "The currency you are looking for was not found."):
+    dictionary = {
+        'euro':'€',
+        'dollar':'$',
+        'yen':'¥'
+    }
+    if inputuser not in dictionary.keys():
+        raise Exception (error_msg)
+    else:
+        print (dictionary[inputuser])
+
+#%%Ej 7
+
+def tuple_to_dict(list1: list) -> dict:
+    dictionary = {}
+    for i in list1:
+        if type(i) != tuple or len(i) != 2:
+            pass
+        else:
+            dictionary[i[0]] = i[1]
+    return dictionary
+
+#%%Ej8
+
+def tuple_to_dict2(list1: list) -> dict:
+    dictionary = {}
+    for i in list1:
+        if type(i) != tuple or len(i) != 2:
+            pass
+        elif i[0] in dictionary.keys():
+            dictionary[i[0]].append(i[1])
+        else:
+            dictionary[i[0]] = [i[1]]
+    return dictionary
 
 #%%Ej 9
 
-#%%Ej 10
-def load_data(filename: str) -> dict:
+def dados(number: int) -> dict:
     dictionary = {}
-    with open (filename, 'r') as f:
-        lines = f.readlines()
-        for line in lines:
-            line = line.strip("\n")
-            if len(line.split(":")) == 2:
-                key, value = line.split(":")
-                dictionary[key] = value
-        return dictionary
-
-#%% Ej 11
-def save_data(dictionary: dict, filename: str):
-    with open(filename, 'a') as f:
-        for key in dictionary.keys():
-            f.write(f'{key}:{dictionary[key]}\n')
-        return None
-
-#%% Ej 12
-
+    from random import choice
+    for i in range(0, number):
+        dado1 = choice(list(range(1,7)))
+        dado2 = choice(list(range(1,7)))
+        suma = dado1 + dado2
+        if suma in dictionary.keys():
+            dictionary[suma] += 1
+        else: 
+            dictionary[suma] = 1
+    dictionary_ordered = {}
+    a = list(dictionary.keys())
+    a.sort()
+    for i in a:
+        dictionary_ordered[i] = dictionary[i]
+    return dictionary_ordered
+        
+#%%Ej 10
 
 
 def main():
-    # dictionary = {
-    #     'Pasto' : 'verde',
-    #     'Cielo' : 'celeste',
-    #     'Nube' : 'blanca'
-    # }
+    dictionary = {
+        'cielo' : 'celeste',
+        'pasto' : 'verde',
+        'clifford': 'rojo'
+    }
 
-    #less()
-    #head('texto.txt', 3)
-    #tails('texto.txt', 3)
-    #touch('helo.txt')
-    #cp('texto.txt', "copy.txt")
-    #print(wc("texto.txt"))
-    #grep('a', 'texto.txt')
-    #cat("copy.txt", "texto.txt")
-    #load_data("helo.txt")
-    #save_data(dictionary, "save_data.txt")
+    list_tuple = [('Hernan', 47), ('Ramiro', 65), ('Juan', 20)]
+    list_tuple2 = list_tuple + [('Juan', 54)]
+
+    # printkeys(dictionary)
+    # printvalues(dictionary)
+    #print(squared(8))
+    # print(dictcount("Hello World!"))
+
+    # inputuser = input("Please insert a currency: ")
+    # currency(inputuser)
+    #print(tuple_to_dict(list_tuple))
+    # print(tuple_to_dict2(list_tuple2))
+    print(dados(10000))
+
+
 
     pass
 
